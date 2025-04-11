@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Sweetheart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      background-color: black;
+      color: lightpink;
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      padding: 2em;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8em;
+    }
+    .slide.active {
+      display: flex;
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      flex-wrap: wrap;
+    }
+    button {
+      background: lightpink;
+      color: black;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    audio {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    .heart {
+      width: 10px;
+      height: 10px;
+      background: red;
+      position: fixed;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: floatUp 6s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -5px;
+      left: 0;
+    }
+    .heart::after {
+      left: -5px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="fell-for-her.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+  </script>
+
+  <div class="slide active">Hi Sweetheart...</div>
+  <div class="slide">I just wanted to say something today.</div>
+  <div class="slide">There’s no special occasion...</div>
+  <div class="slide">But you are always special to me.</div>
+  <div class="slide">You light up my world just by being in it.</div>
+  <div class="slide">You're so incredibly beautiful—more than words can say.</div>
+  <div class="slide">Your heart, your smile, your soul—they amaze me every day.</div>
+  <div class="slide">I fall more in love with you every single moment.</div>
+  <div class="slide">You are my joy, my peace, my everything.</div>
+  <div class="slide">
+    My Sweetheart,<br><br>
+    There are no words strong enough to describe how deeply I love you, but I’ll try anyway. Every time I look at you, I see beauty in its purest form—not just your stunning smile or your captivating eyes, but the warmth, strength, and kindness that live in your heart. You are the most beautiful person I’ve ever known, inside and out.<br><br>
+    You’ve become the light in my dark days and the calm in my storms. Just hearing your voice, seeing your name pop up on my screen, or thinking about you brings me peace I never knew I needed. You’ve shown me what real love feels like—unshaken, pure, and endless.<br><br>
+    You don’t just complete my world, you are my world. I’m endlessly grateful for every moment I get to spend with you, and I’ll never take your love for granted. Thank you for being you—my Sweetheart, my joy, my everything.<br><br>
+    I love you more than words can express, more than time can measure, and more than life itself.<br><br>
+    Forever yours,<br><br>
+    [Your Name]
+  </div>
+  <div class="slide">I love you. Always. Forever.</div>
+
+  <div class="controls">
+    <button onclick="changeSlide(-1)">Previous</button>
+    <button onclick="changeSlide(1)">Next</button>
+  </div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    function changeSlide(step) {
+      slides[current].classList.remove('active');
+      current = (current + step + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    }
+  </script>
+</body>
+</html>
